@@ -15,6 +15,11 @@ const routes: Routes = [
         loadChildren: () => import('./repartidores/repartidores.module').then(m => m.RepartidoresModule),
         canActivate: [AuthGuardService]
     },
+    {
+        path: 'pizzas',
+        loadChildren: () => import('./pizzas/pizzas.module').then(m => m.PizzasModule),
+        canActivate: [AuthGuardService]
+    },
     { path: '', pathMatch: 'full', redirectTo: 'bienvenido' }
 ];
 
