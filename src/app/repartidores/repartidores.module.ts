@@ -7,6 +7,10 @@ import { AuthGuardService } from '../services/auth-guard.service';
 import { ErrorComponent } from './components/error/error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CountryListComponent } from './components/country-list/country-list.component';
+import { ListaRepartidoresComponent } from './components/lista-repartidores/lista-repartidores.component';
+import { DetalleRepartidorComponent } from './components/detalle-repartidor/detalle-repartidor.component';
+import { DetallePaisComponent } from './components/detalle-pais/detalle-pais.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -14,7 +18,10 @@ import { CountryListComponent } from './components/country-list/country-list.com
     AltaComponent,
     ErrorComponent,
     CountryListComponent,
-
+    ListaRepartidoresComponent,
+    DetalleRepartidorComponent,
+    DetallePaisComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,

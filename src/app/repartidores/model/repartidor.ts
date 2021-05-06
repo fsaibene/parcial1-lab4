@@ -7,3 +7,8 @@ export class Repartidor {
     public unidadPropia: boolean;
     public deleted: boolean = false;
 }
+
+export class Pais {
+    public name: string;
+    public url;
+}

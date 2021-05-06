@@ -12,8 +12,13 @@
         <li *ngIf="!(authService.loggedUser | async)" class="nav-item">
             <a class="nav-link" routerLink="/login/register">Registro</a>
           </li>
+
           <li *ngIf="(authService.loggedUser | async)" class="nav-item">
-            <a class="nav-link" (click)="logout()">Cerrar sesión</a>
+            <a class="nav-link" routerLink="/repartidores/alta">Alta repartidores</a>
+          </li>
+
+          <li *ngIf="(authService.loggedUser | async)" class="nav-item">
+            <a class="nav-link" routerLink="/repartidores/dashboard">Lista repartidores</a>
           </li>
       </ul>
     </div>
