@@ -1,0 +1,22 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Usuario</th>
+        <th scope="col">Nombre y apellido</th>
+        <th scope="col">Cantidad de repositorios</th>
+        <th scope="col">Url</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngIf="data">
+        <th scope="row">{{data.login}}</th>
+        <td>{{data.name}}</td>
+        <td>{{data.public_repos}}</td>
+        <td>{{data.url}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="data">
+      <img class="foto" [src]="data.avatar_url" alt="">
+  </div>
