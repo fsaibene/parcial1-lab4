@@ -6,12 +6,14 @@ import { AltaComponent } from './alta/alta.component';
 import { AuthGuardService } from '../services/auth-guard.service';
 import { ErrorComponent } from './components/error/error.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CountryListComponent } from './components/country-list/country-list.component';
 
 
 @NgModule({
   declarations: [
     AltaComponent,
     ErrorComponent,
+    CountryListComponent,
 
   ],
   imports: [

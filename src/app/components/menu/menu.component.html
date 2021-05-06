@@ -6,11 +6,14 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li *ngIf="!(authService.loggedUser | async)" class="nav-item active">
           <a class="nav-link" routerLink="/login/login">Login</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="!(authService.loggedUser | async)" class="nav-item">
             <a class="nav-link" routerLink="/login/register">Registro</a>
+          </li>
+          <li *ngIf="(authService.loggedUser | async)" class="nav-item">
+            <a class="nav-link" (click)="logout()">Cerrar sesión</a>
           </li>
       </ul>
     </div>
