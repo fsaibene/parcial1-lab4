@@ -1,10 +1,13 @@
   <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Login Form -->
-    <input type="text" [(ngModel)]="email" id="login" class="fadeIn second" name="login" placeholder="login">
-    <input type="text" [(ngModel)]="password" id="password" class="fadeIn third" name="login" placeholder="password">
-    <br>
-    <button (click)="login()" class="btn btn-primary" value="Log In">Iniciar Sesion</button>
-
+        <input type="text" [(ngModel)]="email" id="login" class="fadeIn second" name="login" placeholder="Correo">
+        <input type="password" [(ngModel)]="password" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+        <br>
+        <button (click)="login()" class="btn btn-primary" value="Log In">Iniciar Sesion</button>
+    </div>
+    <div class="container">
+        <button (click)="fillData('admin')" class="btn btn-primary btn-login" value="Log In">Completar datos admin</button>
+        <button (click)="fillData('employee')" class="btn btn-primary btn-login" value="Log In">Completar datos empleado</button>
     </div>
   </div>

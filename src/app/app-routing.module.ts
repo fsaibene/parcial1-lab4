@@ -10,7 +10,7 @@ const routes: Routes = [
         loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
     },
     {
-        path: 'partidores',
+        path: 'repartidores',
         loadChildren: () => import('./repartidores/repartidores.module').then(m => m.RepartidoresModule)
     },
     { path: '', pathMatch: 'full', redirectTo: 'bienvenido' }

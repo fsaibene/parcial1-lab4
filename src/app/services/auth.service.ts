@@ -41,7 +41,7 @@ export class AuthService {
                     this.ngZone.run(() => {
                         this.setUserData(result.user);
                         localStorage.setItem('user', JSON.stringify(result.user));
-                        this.router.navigate(['home']);
+                        this.router.navigate(['repartidores/alta']);
                         let user = new UserLogged();
                         user.userLogged = email;
                         user.date = Date.now();
