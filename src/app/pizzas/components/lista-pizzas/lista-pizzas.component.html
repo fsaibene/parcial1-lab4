@@ -1,1 +1,28 @@
-<p>lista-pizzas works!</p>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Tabla Peliculas</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Ingredientes</th>
+                    <th scope="col">Esta lista</th>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let movie of pizzas$ | async">
+                    <th scope="row">{{movie.nombre}}</th>
+                    <td>{{movie.ingredientes}}</td>
+                    <td>{{movie.lista}}</td>
+                    <td>{{movie.peso}}</td>
+                    <td>{{movie.precio}}</td>
+                    <td>
+                        <button (click)="pizzaSelected(movie)">Seleccionar Pizza</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

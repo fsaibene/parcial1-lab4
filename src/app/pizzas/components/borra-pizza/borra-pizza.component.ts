@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Pizza } from '../../model/pizza';
+import { PizzaService } from '../../services/pizza.service';
 
 @Component({
   selector: 'app-borra-pizza',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./borra-pizza.component.css']
 })
 export class BorraPizzaComponent implements OnInit {
-
-  constructor() { }
+@Input() pizza: Pizza;
+  constructor(private ps: PizzaService) { }
 
   ngOnInit(): void {
   }
-
+  public borrar(): void {
+    if(this.pizza){
+        this.ps.delete(this.pizza);
+    }
+}
 }
