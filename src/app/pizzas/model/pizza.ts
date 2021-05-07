@@ -4,4 +4,5 @@ export class Pizza {
     public ingredientes: string;
     public precio: number;
     public peso: number;
+    public deleted: boolean = false;
 }

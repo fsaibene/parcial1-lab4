@@ -13,6 +13,7 @@ import { User } from '../classes/user';
 export class AuthService {
   userData: any; // Save logged in user data
   public loggedUser: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  public loggedUserIsAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public localStorageUser : string = "";
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -20,6 +21,9 @@ export class AuthService {
     public router: Router,  
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {    
+      this.loggedUser.subscribe(value => {
+            this.loggedUserIsAdmin.next(value == "admin@admin.com");
+      })
     
     this.afAuth.authState.subscribe(user => {
         if (user) {

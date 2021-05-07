@@ -11,5 +11,8 @@ export class DashboardPizzaComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  public pizzaCreated(pizza) {
+      console.log(pizza)
+  }
 
 }

@@ -9,6 +9,7 @@ import { AltaPizzaComponent } from './components/alta-pizza/alta-pizza.component
 import { BorraPizzaComponent } from './components/borra-pizza/borra-pizza.component';
 import { ModificaPizzaComponent } from './components/modifica-pizza/modifica-pizza.component';
 import { AuthGuardService } from '../services/auth-guard.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { AuthGuardService } from '../services/auth-guard.service';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     PizzasRoutingModule
   ],
   providers: [AuthGuardService]

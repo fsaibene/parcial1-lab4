@@ -1,1 +1,39 @@
-<p>alta-pizza works!</p>
+<div *ngIf="!creandoPelicula" class="container">
+    Pizza creada! Desea crear una nueva?
+    <button (click)="createNewMovie()">Crear</button>
+</div>
+
+<div *ngIf="creandoPelicula" class="container">
+    <form class="contenedor" [formGroup]="fg" (ngSubmit)="onSubmit(fg)">
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nombre de la pizza </label>
+            <input type="text" formControlName="nombre" class="form-control" required>
+            <app-error [needValidate$]="needValidate$" [control]="fg.controls['nombre']" ></app-error>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Ingredientes </label>
+            <input type="text" formControlName="ingredientes" class="form-control" required>
+            <app-error [needValidate$]="needValidate$" [control]="fg.controls['ingredientes']" ></app-error>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Esta lista?</label>
+            <select class="form-select" formControlName="lista" id="country" required>
+                <option value="true">Si</option>
+                <option value="false">No</option>
+              </select>
+            <app-error [needValidate$]="needValidate$" [control]="fg.controls['lista']" ></app-error>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Peso</label>
+            <input type="number" formControlName="peso" class="form-control" required>
+            <app-error [needValidate$]="needValidate$" [control]="fg.controls['peso']" ></app-error>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Precio</label>
+            <input type="number" formControlName="precio" class="form-control" required>
+            <app-error [needValidate$]="needValidate$" [control]="fg.controls['precio']" ></app-error>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar pizza</button>
+    </form>
+</div>

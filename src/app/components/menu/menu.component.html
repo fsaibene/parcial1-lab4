@@ -20,7 +20,7 @@
           <li *ngIf="(authService.loggedUser | async)" class="nav-item">
             <a class="nav-link" routerLink="/repartidores/dashboard">Lista repartidores</a>
           </li>
-          <li *ngIf="(authService.loggedUser | async)" class="nav-item">
+          <li *ngIf="(authService.loggedUserIsAdmin | async)" class="nav-item">
             <a class="nav-link" routerLink="/pizzas/dashboard">Pizzas</a>
           </li>
       </ul>
