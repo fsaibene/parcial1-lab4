@@ -8,6 +8,7 @@ import { DashboardPizzaComponent } from './components/dashboard-pizza/dashboard-
 import { AltaPizzaComponent } from './components/alta-pizza/alta-pizza.component';
 import { BorraPizzaComponent } from './components/borra-pizza/borra-pizza.component';
 import { ModificaPizzaComponent } from './components/modifica-pizza/modifica-pizza.component';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { ModificaPizzaComponent } from './components/modifica-pizza/modifica-piz
   imports: [
     CommonModule,
     PizzasRoutingModule
-  ]
+  ],
+  providers: [AuthGuardService]
+
 })
 export class PizzasModule { }
