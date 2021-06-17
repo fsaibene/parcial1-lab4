@@ -128,7 +128,11 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      tipo: user.tipo,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      deleted: false
     }
     this.loggedUser.next(user.email);
     return userRef.set(userData, {

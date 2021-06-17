@@ -20,7 +20,7 @@ const routes: Routes = [
         loadChildren: () => import('./pizzas/pizzas.module').then(m => m.PizzasModule),
         canActivate: [AuthGuardService]
     },
-    { path: '', pathMatch: 'full', redirectTo: 'bienvenido' }
+    { path: '', pathMatch: 'full', redirectTo: 'login/register' }
 ];
 
 @NgModule({

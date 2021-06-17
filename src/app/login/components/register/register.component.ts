@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from 'src/app/classes/user';
+import { UserService } from 'src/app/services/user.service';
+import { FirebaseStorageService, MEDIA_STORAGE_PATH } from '../../firebase-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -6,10 +11,70 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+    public creando: boolean = true;
+    public fg: FormGroup;
+    public needValidate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public needValidate$: Observable<boolean> = this.needValidate.asObservable();
 
-  constructor() { }
+    public foto1Data: FormData = new FormData();
 
-  ngOnInit(): void {
-  }
+    constructor(private fb: FormBuilder,
+         private usuarioesService: UserService,
+         private firebaseStorage: FirebaseStorageService){
+    }
+
+    ngOnInit(): void {
+        this.fg =  this.fb.group({
+            'photoURL': [''],
+            'firstName': ['', [Validators.required, Validators.maxLength(100)]],
+            'lastName': ['', [Validators.required, Validators.maxLength(100)]],
+            'tipo': ['', [Validators.required]],
+            'email': ['', [Validators.required, Validators.email]],
+        });   
+    }    
+
+    public saveusuario(usuario): void {
+        this.usuarioesService.create2(usuario);
+    }
+    
+    public onSubmit(form): void {
+        this.needValidate.next(true);
+        if(form.valid) {
+        let usuario = {} as User;
+        usuario.photoURL = this.fg.controls["photoURL"].value;
+        usuario.firstName = this.fg.controls["firstName"].value;
+        usuario.lastName = this.fg.controls["lastName"].value;
+        usuario.email = this.fg.controls["email"].value;
+        usuario.tipo = this.fg.controls["tipo"].value;
+        this.saveusuario(usuario);
+        this.creando = false;
+        }
+    }
+
+    public createNewMovie(): void {
+        this.creando = true;
+        this.fg.reset();
+    }
+
+    public uploadPhoto(data: FormData) {
+        let archivo = data.get('archivo') as File;
+        if(archivo) {
+            let email = this.fg.controls["email"].value;
+            let extension = archivo.name.split(".").pop();
+            let name = MEDIA_STORAGE_PATH  + email + "." + extension;
+            this.firebaseStorage.referenciaCloudStorage(name);
+            this.firebaseStorage.tareaCloudStorage(name, archivo);
+        }
+    }
+
+    public cambioArchivo(event: any) {
+
+        if (event.target.files.length > 0) {
+            for (let i = 0; i < event.target.files.length; i++) {
+                this.foto1Data.delete("archivo");
+                this.foto1Data.append("archivo", event.target.files[i], event.target.files[i].name)
+            }
+        }
+    }
 
 }
