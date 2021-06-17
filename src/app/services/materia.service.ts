@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Materia, User } from '../classes/user';
+import { Inscripcion, Materia, User } from '../classes/user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,13 @@ export class MateriaService {
   
     public create2(repartidor: Materia) {
         return this.menssagesRef.add({...repartidor});
+    }
+
+    public createInscripcion(materia: Materia, inscripcion: Inscripcion) {
+        let cupoNuevo = (+materia.cupo) -1;
+        this.menssagesRef.doc(materia.uid).update({"cupo": cupoNuevo.toString() })
+        return this.menssagesRef.doc(materia.uid).collection("inscripciones").add(inscripcion);
+        // return this.menssagesRef.add({...repartidor});
     }
     
     public delete(repartidor: Materia) {

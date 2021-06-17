@@ -25,10 +25,11 @@ export class ComboAlumnosComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.users.getAll().ref.where("tipo", "==", "Alumno")
+        this.users.getAll().ref.where("tipo", "==", "alumno")
         .get().then(res => {
             res.docs.forEach(doc => {
                 let profe = doc.data();
+                profe.uid = doc.id;
                 this.alumnos.push(profe); 
             })
         })

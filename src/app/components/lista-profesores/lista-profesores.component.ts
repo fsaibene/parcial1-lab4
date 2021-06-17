@@ -28,6 +28,7 @@ export class ListaProfesoresComponent implements OnInit, OnDestroy {
         .get().then(res => {
             res.docs.forEach(doc => {
                 let profe = doc.data();
+                profe.uid = doc.id;
                 this.profesores.push(profe); 
             })
         })

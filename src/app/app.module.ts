@@ -21,6 +21,7 @@ import { FormErrorComponent } from './components/form-error/form-error.component
 import { TodasMateriasComponent } from './components/todas-materias/todas-materias.component';
 import { InscripcionComponent } from './components/inscripcion/inscripcion.component';
 import { ComboAlumnosComponent } from './components/combo-alumnos/combo-alumnos.component';
+import { ComboMateriasComponent } from './components/combo-materias/combo-materias.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ComboAlumnosComponent } from './components/combo-alumnos/combo-alumnos.
     FormErrorComponent,
     TodasMateriasComponent,
     InscripcionComponent,
-    ComboAlumnosComponent
+    ComboAlumnosComponent,
+    ComboMateriasComponent
   ],
   imports: [
     BrowserModule,
