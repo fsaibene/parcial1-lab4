@@ -12,12 +12,14 @@ import { firebaseConfig } from 'src/firebase/firebase-config';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ErrorComponent } from './components/error/error.component';
+import { MailDirective } from './directives/mail.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
     MenuComponent,
+    MailDirective,
   ],
   imports: [
     BrowserModule,

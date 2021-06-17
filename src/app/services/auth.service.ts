@@ -45,7 +45,7 @@ export class AuthService {
                     this.ngZone.run(() => {
                         this.setUserData(result.user);
                         localStorage.setItem('user', JSON.stringify(result.user));
-                        this.router.navigate(['repartidores/alta']);
+                        this.router.navigate(['bienvenido']);
                         let user = new UserLogged();
                         user.userLogged = email;
                         user.date = Date.now();
@@ -67,6 +67,7 @@ export class AuthService {
       this.setUserData(result.user);
       this.router.navigate(['home']);
       this.loggedUser.next(email);
+      return result;
     } catch (error) {
       window.alert(error.message);
     }
@@ -127,11 +128,11 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL,
+      photoURL: "default",
       emailVerified: user.emailVerified,
-      tipo: user.tipo,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      tipo: "default",
+      firstName: "default",
+      lastName: "default",
       deleted: false
     }
     this.loggedUser.next(user.email);

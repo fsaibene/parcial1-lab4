@@ -23,6 +23,9 @@
           <li *ngIf="(authService.loggedUserIsAdmin | async)" class="nav-item">
             <a class="nav-link" routerLink="/pizzas/dashboard">Pizzas</a>
           </li>
-      </ul>
+        </ul>
+        <div appMail *ngIf="(authService.loggedUser | async)" class="nav-item" style="float: right; color: white; margin-left: auto;">
+          <div></div>
+        </div>
     </div>
   </nav>
