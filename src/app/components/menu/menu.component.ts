@@ -8,12 +8,28 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
+    public tipoUsuario: string
     constructor(router: Router, public authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
-  public logout() {
-      this.authService.signOut();
-  }
+    ngOnInit(): void {
+
+        this.authService.userLoginData.subscribe(val =>  {
+            if(val) {
+                this.tipoUsuario = val.tipo.toLowerCase();
+            } else {
+                this.tipoUsuario = null;
+            }
+        })
+    }
+
+    public isAdminLoggedIn() {
+        return this.authService.loggedUserIsAdmin;
+    }
+    
+    public isLoggedIn() {
+        return this.authService.loggedUser;
+    }
+    public logout() {
+        this.authService.signOut();
+    }
 }

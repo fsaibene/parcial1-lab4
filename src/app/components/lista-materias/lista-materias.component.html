@@ -1,0 +1,32 @@
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Tabla de Materias</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Profesor</th>
+                            <th scope="col">Anio</th>
+                            <th scope="col">Cupo</th>
+                            <th scope="col">Cuatrimestre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let materia of materias">
+                            <th scope="row">{{materia.nombre}}</th>
+                            <td>{{materia.profesor}}</td>
+                            <td>{{materia.anio}}</td>
+                            <td>{{materia.cupo}}</td>
+                            <td>{{materia.cuatrimestre}}</td>
+                            <td>
+                                <button (click)="materiaSeleccionada(materia)">Seleccionar Materia</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>

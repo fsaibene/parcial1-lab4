@@ -22,10 +22,13 @@ export class LoginComponent implements OnInit {
   public fillData(data) {
       if(data == "admin"){
           this.email = "admin@admin.com";
-          this.password = "adminadmin";
+          this.password = "123456";
+      } else if(data == "profesor") {
+        this.email = "profesor@profesor.com";
+        this.password = "123456";
       } else {
-        this.email = "empleado@empleado.com";
-        this.password = "empleado";
+        this.email = "alumno@alumno.com";
+        this.password = "123456";
       }
   }
 }

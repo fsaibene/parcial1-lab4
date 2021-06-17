@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { BehaviorSubject } from 'rxjs';
 import { UserLogged } from '../classes/message';
 import { User } from '../classes/user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { User } from '../classes/user';
 
 export class AuthService {
   userData: any; // Save logged in user data
+  public userLoginData: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   public loggedUser: BehaviorSubject<string> = new BehaviorSubject<string>("");
   public loggedUserIsAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public localStorageUser : string = "";
@@ -19,16 +21,28 @@ export class AuthService {
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,  
+    private userService: UserService,
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {    
-      this.loggedUser.subscribe(value => {
-            this.loggedUserIsAdmin.next(value == "admin@admin.com");
+      this.userLoginData.subscribe(value => {
+          if(value){
+              this.loggedUserIsAdmin.next(value.tipo == "Admin");
+          }
       })
     
     this.afAuth.authState.subscribe(user => {
         if (user) {
             this.userData = user;
             localStorage.setItem('user', JSON.stringify(this.userData));
+            this.userService.getAll().ref.where("email", "==", this.userData["email"]).get().then(res => {
+                if(res.docs[0]){
+                    let asd = res.docs[0].data();
+                    console.log(asd);
+                    this.loggedUserIsAdmin.next(asd.tipo == "Admin");
+                    this.loggedUser.next(asd.email);
+                }
+            })
+            console.log(this.userData)
         } else {
             localStorage.setItem('user', "");
         }
@@ -43,8 +57,13 @@ export class AuthService {
             await this.afAuth.signInWithEmailAndPassword(email, password).then(result => {
                 if(result.user?.email){
                     this.ngZone.run(() => {
+                        this.userService.getAll().ref.where("email", "==", email).get().then(res => {
+                            let asd = res.docs[0].data();
+                            console.log(asd);
+                            this.userLoginData.next(asd);
+                            localStorage.setItem('user', JSON.stringify(asd));
+                        })
                         this.setUserData(result.user);
-                        localStorage.setItem('user', JSON.stringify(result.user));
                         this.router.navigate(['bienvenido']);
                         let user = new UserLogged();
                         user.userLogged = email;
@@ -65,8 +84,8 @@ export class AuthService {
       up and returns promise */
       // this.sendVerificationMail();
       this.setUserData(result.user);
-      this.router.navigate(['home']);
-      this.loggedUser.next(email);
+    //   this.router.navigate(['bienvenido']);
+    //   this.loggedUser.next(email);
       return result;
     } catch (error) {
       window.alert(error.message);
@@ -106,12 +125,24 @@ export class AuthService {
     return false;
   }
 
+  get isAdminLoggedIn(): boolean {
+    let usr = localStorage.getItem('user');
+    if(usr) {
+      let userObj = JSON.parse(usr);
+      if(userObj){
+          this.loggedUser.next(userObj.email);
+          return userObj && userObj.email && userObj.tipo == "Admin";
+      }
+    }
+    return false;
+  }
+
   // Auth logic to run auth providers
   public async authLogin(provider: any) {
     return this.afAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['home']);
+          this.router.navigate(['bienvenido']);
         })
       this.setUserData(result.user);
     }).catch((error) => {
@@ -146,8 +177,10 @@ export class AuthService {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
       this.router.navigate(['login']);
+      this.userLoginData.next(null);
       this.userData = null;
       this.loggedUser.next("");
+      this.loggedUserIsAdmin.next(false)
     })
   }
 }

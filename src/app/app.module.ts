@@ -13,6 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ErrorComponent } from './components/error/error.component';
 import { MailDirective } from './directives/mail.directive';
+import { AltaComponent } from './components/materias/alta/alta.component';
+import { AltaAdminComponent } from './components/alta-admin/alta-admin.component';
+import { ListaProfesoresComponent } from './components/lista-profesores/lista-profesores.component';
+import { ListaMateriasComponent } from './components/lista-materias/lista-materias.component';
+import { FormErrorComponent } from './components/form-error/form-error.component';
+import { TodasMateriasComponent } from './components/todas-materias/todas-materias.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +26,12 @@ import { MailDirective } from './directives/mail.directive';
     WelcomeComponent,
     MenuComponent,
     MailDirective,
+    AltaComponent,
+    AltaAdminComponent,
+    ListaProfesoresComponent,
+    ListaMateriasComponent,
+    FormErrorComponent,
+    TodasMateriasComponent
   ],
   imports: [
     BrowserModule,

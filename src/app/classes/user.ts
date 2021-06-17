@@ -9,3 +9,13 @@ export interface User {
     firstName: string;
     lastName: string;
  }
+
+ export interface Materia {
+    uid: string;
+    nombre: string;
+    cuatrimestre: string;
+    cupo: string;
+    anio: string;
+    profesor: string;
+    deleted: boolean;
+ }

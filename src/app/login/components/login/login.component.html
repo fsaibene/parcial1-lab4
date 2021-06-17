@@ -2,12 +2,13 @@
     <div id="formContent">
       <!-- Login Form -->
         <input type="text" [(ngModel)]="email" id="login" class="fadeIn second" name="login" placeholder="Correo">
-        <input type="text" [(ngModel)]="password" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+        <input type="text" [(ngModel)]="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
         <br>
         <button (click)="login()" class="btn btn-primary" value="Log In">Iniciar Sesion</button>
     </div>
-    <div class="container">
+    <div class="container" style="margin-top: 6px;">
         <button (click)="fillData('admin')" class="btn btn-primary btn-login" value="Log In">Completar datos admin</button>
-        <button (click)="fillData('employee')" class="btn btn-primary btn-login" value="Log In">Completar datos empleado</button>
+        <button (click)="fillData('profesor')" class="btn btn-primary btn-login" value="Log In">Completar datos profesor</button>
+        <button (click)="fillData('alumno')" class="btn btn-primary btn-login" value="Log In">Completar datos alumno</button>
     </div>
   </div>

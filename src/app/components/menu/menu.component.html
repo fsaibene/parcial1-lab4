@@ -6,26 +6,33 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li *ngIf="!(authService.loggedUser | async)" class="nav-item active">
+        <li *ngIf="!(isLoggedIn() | async)" class="nav-item active">
           <a class="nav-link" routerLink="/login/login">Login</a>
         </li>
-        <li *ngIf="!(authService.loggedUser | async)" class="nav-item">
+        <li *ngIf="!(isLoggedIn() | async)" class="nav-item">
             <a class="nav-link" routerLink="/login/register">Registro</a>
           </li>
-
-          <li *ngIf="(authService.loggedUser | async)" class="nav-item">
-            <a class="nav-link" routerLink="/repartidores/alta">Alta repartidores</a>
+          <li *ngIf="(isAdminLoggedIn() | async)" class="nav-item">
+            <a class="nav-link" routerLink="/alta-materias">Alta de materias</a>
           </li>
 
-          <li *ngIf="(authService.loggedUser | async)" class="nav-item">
-            <a class="nav-link" routerLink="/repartidores/dashboard">Lista repartidores</a>
+          <li *ngIf="(isAdminLoggedIn() | async)" class="nav-item">
+            <a class="nav-link" routerLink="/todas-materias">Lista materias</a>
           </li>
-          <li *ngIf="(authService.loggedUserIsAdmin | async)" class="nav-item">
-            <a class="nav-link" routerLink="/pizzas/dashboard">Pizzas</a>
+          <li *ngIf="(isAdminLoggedIn() | async)" class="nav-item">
+            <a class="nav-link" routerLink="/inscripcion-materias">Inscripcion de materias</a>
+          </li>
+          <li *ngIf="(isAdminLoggedIn() | async)" class="nav-item">
+            <a class="nav-link" routerLink="/listado-alumnos">Listado de alumnos</a>
+          </li>
+          <li *ngIf="(isAdminLoggedIn() | async)" class="nav-item">
+            <a class="nav-link" routerLink="/listado-profesores">Listado de profesores</a>
           </li>
         </ul>
-        <div appMail *ngIf="(authService.loggedUser | async)" class="nav-item" style="float: right; color: white; margin-left: auto;">
-          <div></div>
+        <button *ngIf="(isLoggedIn() | async)" (click)="logout()"class="btn btn-primary" style="float: right; color: white; margin-left: auto;">
+            Cerrar sesión
+        </button>
+        <div appMail *ngIf="(isLoggedIn() | async)" class="nav-item" style="float: right; color: white;">
         </div>
     </div>
   </nav>
