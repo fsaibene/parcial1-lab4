@@ -1,0 +1,37 @@
+<div class="container">
+    <main>
+      <div class="row g-5">
+        <div class="col-md-12 col-lg-12">
+          <h4 class="mb-3">Alta de materias</h4>
+          <form class="needs-validation" [formGroup]="fg" (ngSubmit)="onSubmit(fg)" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="" value="" required>
+                <app-form-error [needValidate$]="needValidate$" [control]="fg.controls['nombre']" ></app-form-error>
+              </div>
+            
+              <app-combo-alumnos (profSelected)="onSelectAlumno($event)"></app-combo-alumnos>
+              <div class="col-sm-6">
+                <label for="cuatrimestre" class="form-label">Cuatrimestre</label>
+                <input type="text" class="form-control" formControlName="cuatrimestre" id="cuatrimestre" placeholder="" value="" required>
+                <app-form-error [needValidate$]="needValidate$" [control]="fg.controls['cuatrimestre']" ></app-form-error>
+              </div>
+              <div class="col-12">
+                <label for="text" class="form-label">Cupo</label>
+                <input type="text" class="form-control" formControlName="cupo" id="cupo" placeholder="" value="" required>
+                <app-form-error [needValidate$]="needValidate$" [control]="fg.controls['cupo']" ></app-form-error>
+              </div>
+            </div>
+            
+            <div class="col-12">
+                <label for="anio" class="form-label">Año</label>
+                <input type="text" class="form-control" formControlName="anio" id="anio" placeholder="" value="" required>
+                <app-form-error [needValidate$]="needValidate$" [control]="fg.controls['anio']" ></app-form-error>
+              </div>
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>

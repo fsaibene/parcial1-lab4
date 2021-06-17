@@ -40,6 +40,7 @@ export class AuthService {
                     console.log(asd);
                     this.loggedUserIsAdmin.next(asd.tipo == "Admin");
                     this.loggedUser.next(asd.email);
+                    this.userLoginData.next(asd);
                 }
             })
             console.log(this.userData)

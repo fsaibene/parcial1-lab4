@@ -19,6 +19,8 @@ import { ListaProfesoresComponent } from './components/lista-profesores/lista-pr
 import { ListaMateriasComponent } from './components/lista-materias/lista-materias.component';
 import { FormErrorComponent } from './components/form-error/form-error.component';
 import { TodasMateriasComponent } from './components/todas-materias/todas-materias.component';
+import { InscripcionComponent } from './components/inscripcion/inscripcion.component';
+import { ComboAlumnosComponent } from './components/combo-alumnos/combo-alumnos.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { TodasMateriasComponent } from './components/todas-materias/todas-materi
     ListaProfesoresComponent,
     ListaMateriasComponent,
     FormErrorComponent,
-    TodasMateriasComponent
+    TodasMateriasComponent,
+    InscripcionComponent,
+    ComboAlumnosComponent
   ],
   imports: [
     BrowserModule,

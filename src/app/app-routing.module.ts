@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InscripcionComponent } from './components/inscripcion/inscripcion.component';
 import { AltaComponent } from './components/materias/alta/alta.component';
 import { TodasMateriasComponent } from './components/todas-materias/todas-materias.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
     { path: 'bienvenido', component: WelcomeComponent },
     { path: 'alta-materias', component: AltaComponent, canActivate: [AdminGuard] },
     { path: 'todas-materias', component: TodasMateriasComponent, canActivate: [AdminGuard] },
+    { path: 'inscripcion-materias', component: InscripcionComponent, canActivate: [AdminGuard] },
     {
         path: 'login',
         loadChildren: () => import('./login/login.module').then(m => m.LoginModule)

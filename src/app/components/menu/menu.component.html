@@ -33,6 +33,7 @@
             Cerrar sesión
         </button>
         <div appMail *ngIf="(isLoggedIn() | async)" class="nav-item" style="float: right; color: white;">
+            <img class="foto" [src]="photoUrl" alt="">
         </div>
     </div>
   </nav>

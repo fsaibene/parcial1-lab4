@@ -1,34 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { Materia, User } from 'src/app/classes/user';
 import { MateriaService } from 'src/app/services/materia.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-alta',
-  templateUrl: './alta.component.html',
-  styleUrls: ['./alta.component.css']
+  selector: 'app-inscripcion',
+  templateUrl: './inscripcion.component.html',
+  styleUrls: ['./inscripcion.component.css']
 })
-export class AltaComponent implements OnInit {
-    public creando: boolean = true;
+export class InscripcionComponent implements OnInit {
+
     public fg: FormGroup;
     public needValidate: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public needValidate$: Observable<boolean> = this.needValidate.asObservable();
-    public profesores: Array<User> = new Array<User>();
+    public alumnos: Array<User> = new Array<User>();
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService, private materiaService: MateriaService) { }
   ngOnInit(): void {
     this.fg =  this.fb.group({
         'anio': [''],
         'nombre': ['', [Validators.required, Validators.maxLength(100)]],
         'cuatrimestre': ['', [Validators.required, Validators.maxLength(100)]],
-        'profesor': ['', [Validators.required, Validators.maxLength(50)]],
+        'alumno': ['', [Validators.required, Validators.maxLength(50)]],
         'cupo': ['', [Validators.required]],
     });   
 }    
-public onSelectProf($event) {
-    this.fg.controls["profesor"].setValue($event);
+public onSelectAlumno($event) {
+    this.fg.controls["alumno"].setValue($event);
 }
 public onSubmit(form): void {
     this.needValidate.next(true);
@@ -49,5 +50,6 @@ public onSubmit(form): void {
         });
     }
 }
+
 
 }

@@ -19,3 +19,8 @@ export interface User {
     profesor: string;
     deleted: boolean;
  }
+
+ export interface Inscripcion {
+     uid: string;
+     user: User;
+ }

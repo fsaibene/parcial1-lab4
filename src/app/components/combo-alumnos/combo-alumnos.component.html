@@ -1,0 +1,7 @@
+<div class="col-12">
+    <label for="alumno" class="form-label">Profesor</label>
+    <select class="form-select" [(ngModel)]="alumno" (ngModelChange)="onChange($event)" id="alumno" required>
+        <option *ngFor="let alumno of alumnos; let i=index"
+        [value]="alumno.email">{{alumno.firstName +" "+ alumno.lastName}}</option>
+      </select>
+    </div>
