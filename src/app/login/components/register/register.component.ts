@@ -40,14 +40,15 @@ export class RegisterComponent implements OnInit {
     public onSubmit(form): void {
         this.needValidate.next(true);
         if(form.valid) {
-        let usuario = {} as User;
-        usuario.photoURL = this.fg.controls["photoURL"].value;
-        usuario.firstName = this.fg.controls["firstName"].value;
-        usuario.lastName = this.fg.controls["lastName"].value;
-        usuario.email = this.fg.controls["email"].value;
-        usuario.tipo = this.fg.controls["tipo"].value;
-        this.saveusuario(usuario);
-        this.creando = false;
+            let usuario = {} as User;
+            usuario.photoURL = this.fg.controls["photoURL"].value;
+            usuario.firstName = this.fg.controls["firstName"].value;
+            usuario.lastName = this.fg.controls["lastName"].value;
+            usuario.email = this.fg.controls["email"].value;
+            usuario.tipo = this.fg.controls["tipo"].value;
+            this.uploadPhoto(this.foto1Data, usuario);
+            this.saveusuario(usuario);
+            this.creando = false;
         }
     }
 
@@ -56,12 +57,13 @@ export class RegisterComponent implements OnInit {
         this.fg.reset();
     }
 
-    public uploadPhoto(data: FormData) {
+    public uploadPhoto(data: FormData, usuario: User) {
         let archivo = data.get('archivo') as File;
-        if(archivo) {
+        if (archivo) {
             let email = this.fg.controls["email"].value;
             let extension = archivo.name.split(".").pop();
             let name = MEDIA_STORAGE_PATH  + email + "." + extension;
+            usuario.photoURL = name;
             this.firebaseStorage.referenciaCloudStorage(name);
             this.firebaseStorage.tareaCloudStorage(name, archivo);
         }
