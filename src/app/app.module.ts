@@ -22,6 +22,7 @@ import { TodasMateriasComponent } from './components/todas-materias/todas-materi
 import { InscripcionComponent } from './components/inscripcion/inscripcion.component';
 import { ComboAlumnosComponent } from './components/combo-alumnos/combo-alumnos.component';
 import { ComboMateriasComponent } from './components/combo-materias/combo-materias.component';
+import { NotaPipe } from './pipes/nota.pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ComboMateriasComponent } from './components/combo-materias/combo-materi
     TodasMateriasComponent,
     InscripcionComponent,
     ComboAlumnosComponent,
-    ComboMateriasComponent
+    ComboMateriasComponent,
+    NotaPipe
   ],
   imports: [
     BrowserModule,
